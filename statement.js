@@ -35,19 +35,19 @@ function statement(invoice, plays) {
 
   console.log(result);
 
-  function amountFor(play, perf) {
+  function amountFor(play, aPerformance) {
     let result = 0;
     switch (play.type) {
       case "tragedy":
         result = 40000;
-        if (perf.audience > 30) {
-          result += 1000 * (perf.audience - 30);
+        if (aPerformance.audience > 30) {
+          result += 1000 * (aPerformance.audience - 30);
         }
         break;
       case "comedy":
         result = 30000;
-        if (perf.audience > 20) {
-          result += 2000 * (perf.audience - 20);
+        if (aPerformance.audience > 20) {
+          result += 2000 * (aPerformance.audience - 20);
         }
         break;
       default:
