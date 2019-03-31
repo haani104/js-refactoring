@@ -24,34 +24,36 @@ function statement(invoice, plays) {
       volumeCredits += Math.floor(perf.audience / 5);
     }
 
-    result += `  ${play.name}: ${format(thisAmount/100)} (${perf.audience} seats)\n`;
+    result += `  ${play.name}: ${format(thisAmount / 100)} (${
+      perf.audience
+    } seats)\n`;
     totalAmount += thisAmount;
   }
 
-  result += `Amount owed is ${format(totalAmount/100)}\n`;
+  result += `Amount owed is ${format(totalAmount / 100)}\n`;
   result += `You earned ${volumeCredits} credits\n`;
 
   console.log(result);
 
   function amountFor(play, perf) {
-    let thisAmount = 0;
+    let result = 0;
     switch (play.type) {
       case "tragedy":
-        thisAmount = 40000;
+        result = 40000;
         if (perf.audience > 30) {
-          thisAmount += 1000 * (perf.audience - 30);
+          result += 1000 * (perf.audience - 30);
         }
         break;
       case "comedy":
-        thisAmount = 30000;
+        result = 30000;
         if (perf.audience > 20) {
-          thisAmount += 2000 * (perf.audience - 20);
+          result += 2000 * (perf.audience - 20);
         }
         break;
       default:
         throw new Error(`unknown type ${play.type}`);
     }
-    return thisAmount;
+    return result;
   }
 }
 
