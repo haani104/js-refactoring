@@ -6,17 +6,17 @@ class PerformanceCalculator {
 
   get amount() {
     let result = 0;
-    switch (aPerformance.play.type) {
+    switch (this.play.type) {
       case "tragedy":
         result = 40000;
-        if (aPerformance.audience > 30) {
-          result += 1000 * (aPerformance.audience - 30);
+        if (this.performance.audience > 30) {
+          result += 1000 * (this.performance.audience - 30);
         }
         break;
       case "comedy":
         result = 30000;
-        if (aPerformance.audience > 20) {
-          result += 2000 * (aPerformance.audience - 20);
+        if (this.performance.audience > 20) {
+          result += 2000 * (this.performance.audience - 20);
         }
         break;
       default:
@@ -48,24 +48,7 @@ function createStatementData(invoice, plays) {
   }
 
   function amountFor(aPerformance) {
-    let result = 0;
-    switch (aPerformance.play.type) {
-      case "tragedy":
-        result = 40000;
-        if (aPerformance.audience > 30) {
-          result += 1000 * (aPerformance.audience - 30);
-        }
-        break;
-      case "comedy":
-        result = 30000;
-        if (aPerformance.audience > 20) {
-          result += 2000 * (aPerformance.audience - 20);
-        }
-        break;
-      default:
-        throw new Error(`unknown type ${aPerformance.play.type}`);
-    }
-    return result;
+    return new PerformanceCalculator(aPerformance, playFor(aPerformance)).amount
   }
 
   function volumeCreditsFor(aPerformance) {
